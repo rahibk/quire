@@ -1,18 +1,15 @@
 /* CREATE DATABASE charity; */
 
-USE charity;
 
-/* CREATE TABLE users (
-	user_id   INTEGER PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE users (
+	user_id   SERIAL PRIMARY KEY,
 	first_name	VARCHAR(255) NOT NULL,
 	last_name	VARCHAR(255) NOT NULL,
-	dob DATE,
-	e_mail VARCHAR(255) NOT NULL,
-	is_influencer TINYINT(1)
+	e_mail VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE messages(
-	message_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	message_id SERIAL PRIMARY KEY,
 	sender_id INTEGER,
 	receiver_id INTEGER,
 	title VARCHAR(255) NOT NULL,
@@ -23,21 +20,21 @@ CREATE TABLE messages(
 	FOREIGN KEY (receiver_id)
 		REFERENCES users(user_id)
 );
- */
 
 CREATE TABLE charity(
-	charity_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	charity_id SERIAL PRIMARY KEY ,
 	charity_name VARCHAR(255),
 	tagline VARCHAR(255),
 	summary VARCHAR(255)
 );
 
 CREATE TABLE contracts(
-	contract_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	contract_id SERIAL PRIMARY KEY,
 	influencer_id INTEGER,
 	buyer_id INTEGER,
 	monetary_value FLOAT,
 	charity_id INTEGER,
+	is_finished BOOLEAN,
 	FOREIGN KEY (charity_id)
 		REFERENCES charity(charity_id),
 	FOREIGN KEY (influencer_id)
@@ -66,3 +63,6 @@ CREATE TABLE influencers(
 	FOREIGN KEY (charity_id)
 		REFERENCES charity(charity_id)
 );
+
+insert into users (first_name, last_name,e_mail)
+VALUES ("Chloe", "Macklin", "chloe@lg.org")
