@@ -83,7 +83,6 @@ functions:
           path: users/new
           method: post
           cors: true
-          integration: LAMBDA
   createInfluencer:
     handler: handlers/influencers.createInfluencer
     events:
@@ -91,7 +90,76 @@ functions:
           path: users/influencers/new
           method: post
           cors: true
+  getInfluencer:
+    handler: handlers/influencers.getInfluencer
+    events:
+      -  http:
+          path: users/influencers/{id}
+          method: get
+          cors: true
           integration: LAMBDA
+  getAllCharities:
+    handler: handlers/charity.getAllCharities
+    events:
+      -  http:
+          path: charities
+          method: get
+          cors: true
+          integration: LAMBDA
+  getCharity:
+    handler: handlers/charity.getCharity
+    events:
+      -  http:
+          path: charities/{id}
+          method: get
+          cors: true
+          integration: LAMBDA
+  createCharity:
+    handler: handlers/charity.createCharity
+    events:
+      -  http:
+          path: charities/new
+          method: post
+          cors: true
+  createContract:
+    handler: handlers/contracts.createContract
+    events:
+      - http:
+          path: contracts/new
+          method: post
+          cors: true
+  finishContract:
+    handler: handlers/contracts.finishContract
+    events:
+      - http:
+          path: contracts/end/{id}
+          method: put
+          cors: true
+          integration: LAMBDA
+  getContractsForUser:
+    handler: handlers/contracts.getContracts
+    events:
+      - http:
+          path: contracts/user/{id}
+          method: get
+          cors: true
+          integration: LAMBDA
+  getContractsForInfluencer:
+    handler: handlers/contracts.getInfluencerContracts
+    events:
+      - http:
+          path: contracts/influencer/{id}
+          method: get
+          cors: true
+          integration: LAMBDA
+  createMessage:
+    handler: handlers/messages.createMessage
+    events:
+      - http:
+          path: messages/new
+          method: post
+          cors: true
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
