@@ -66,3 +66,16 @@ CREATE TABLE influencers(
 
 insert into users (first_name, last_name,e_mail)
 VALUES ("Chloe", "Macklin", "chloe@lg.org")
+
+CREATE TABLE tags(
+	user_id INTEGER,
+	tag VARCHAR(25),
+	FOREIGN KEY (user_id)
+		REFERENCES influencer(influencer_id)
+)
+
+ALTER TABLE influencers
+ADD tagline VARCHAR(255);
+
+ALTER TABLE influencers
+ADD summary TEXT;
