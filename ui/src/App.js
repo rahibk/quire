@@ -28,7 +28,7 @@ const theme = createMuiTheme({
     button: {
       textTransform: "none"
     },
-    color: "white",
+    color: "#FFF",
     //fontFamily: "'Helvetica', 'Arial', sans-serif, 'Roboto'",
     fontFamily: "'Inter', sans-serif",
     subtitle2: {
