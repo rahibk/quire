@@ -1,24 +1,48 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Landing from "./Components/Landing"
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#121521",
+      contrastText: '#FFFFFF'
+    },
+    secondary: {
+      main: "#121521",
+      contrastText: '#FFFFFF'
+    },
+    text: {
+      disabled: "#FFFFFF"
+    },
+    background: {
+      paper: "#121521"
+    }
+  },
+  shape: {
+    borderRadius: 10
+  },
+  typography: {
+    button: {
+      textTransform: "none"
+    },
+    color: "white",
+    //fontFamily: "'Helvetica', 'Arial', sans-serif, 'Roboto'",
+    fontFamily: "'Inter', sans-serif",
+    subtitle2: {
+      fontWeight: "bold"
+    }
+  }
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <Landing/>
+      </ThemeProvider>
     </div>
   );
 }
