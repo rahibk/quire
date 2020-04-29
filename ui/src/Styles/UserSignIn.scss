@@ -8,8 +8,17 @@
 
 .dialog-header {
     padding: 30px 5px 5px 5px;
+    button {
+        margin: 5px 0 5px 0;
+    }
 }
 
-.linkedin-signup-button {
-    margin-bottom: 10px;
+.login-form {
+    margin-bottom: 20px;
+    label {
+        color: #828282
+    }
+    input {
+        color: #FFF;
+    }
 }

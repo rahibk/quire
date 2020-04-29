@@ -1,8 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Landing from "./Components/Landing"
+import Home from "./Components/Home"
+import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
+import AuthGate from "./Components/AuthGate";
+import Profile from "./Components/Profile";
+import Messages from "./Components/Messages";
+import MentorProfile from "./Components/MentorProfile";
 
 const theme = createMuiTheme({
   palette: {
@@ -41,7 +45,25 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Landing/>
+        <AuthGate>
+        <HashRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/mentor">
+            <MentorProfile />
+          </Route>
+          <Route exact path="/messages">
+            <Messages />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <Redirect to="/"/>
+        </Switch>
+      </HashRouter>
+        </AuthGate>
       </ThemeProvider>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Logo from "@material-ui/icons/CallSplit";
@@ -125,8 +126,8 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function Landing() {
   const classes = useStyles();
-  const [openSignup, setOpenSignup] = React.useState(false);
-  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
 
   return (
     <React.Fragment>
