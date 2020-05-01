@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.663.0",
+    "dotenv": "^8.2.0",
     "pg": "^8.0.2",
     "postgresql-easy": "^1.2.5",
-    "serverless": "^1.68.0",
+    "serverless": "^1.69.0",
     "serverless-offline": "^6.1.4"
   }
 }

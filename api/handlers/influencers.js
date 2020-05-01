@@ -2,7 +2,7 @@ const db = require('../db_connect');
 
 //POST endpoint to create an influencer
 module.exports.createInfluencer = (event, context, callback) => {
-    context.callbacksWaitsForEmptyEventLoop = false;
+    context.callbackWaitsForEmptyEventLoop = false;
     
     const reqBody = JSON.parse(event.body);
     const firstName = reqBody.firstName;
@@ -63,3 +63,24 @@ module.exports.createInfluencer = (event, context, callback) => {
       })
     }) 
  }
+  //GET an influencer and all of their associated information (from users)
+  module.exports.getAllInfluencers = (event, context, callback) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+
+    db.query('SELECT * from influencers')
+    .then(res => {
+      callback(null, {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(res.rows)
+      })
+    })
+    .catch(e => {
+      console.log(e);
+      callback(null, {
+        statusCode: e.statusCode || 500,
+        body: 'Error:' + e
+      })
+    }) 
+ }
+
