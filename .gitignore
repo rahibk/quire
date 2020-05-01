@@ -7,3 +7,5 @@
 #bullshit that i'm tired of putting in gitignore
 .DS_Store
 .vscode/
+api/.serverless/serverless-state.json
+api/.serverless

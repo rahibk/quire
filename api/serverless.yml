@@ -1,3 +1,4 @@
+
 app: quire-api-app
 # Welcome to Serverless!
 #
@@ -25,6 +26,11 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
+
+  environment:
+    AWS_SES_REGION: us-east-1
+    AWS_SES_ACCESS_KEY_ID: AKIA3JJEOIU4HHMGB6RT
+    AWS_SES_SECRET_ACCESS_KEY: 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
 
 # you can overwrite defaults here
 #  stage: dev
@@ -98,6 +104,14 @@ functions:
           method: get
           cors: true
           integration: LAMBDA
+  getAllInfluencers:
+    handler: handlers/influencers.getAllInfluencers
+    events:
+      - http:
+          path: users/influencers
+          method: get
+          cors: true
+          integration: LAMBDA
   getAllCharities:
     handler: handlers/charity.getAllCharities
     events:
@@ -152,13 +166,22 @@ functions:
           method: get
           cors: true
           integration: LAMBDA
-  createMessage:
-    handler: handlers/messages.createMessage
+  handleIncomingMail:
+    handler: handlers/messages.handleIncomingMail
+    events:
+      - s3:
+        bucket: quire-emails
+        event: s3.ObjectCreated:*
+        rules:
+          - prefix: influencers/
+  getMessagesForUser:
+    handler: handlers/messages.getMessagesForUser
     events:
       - http:
-          path: messages/new
-          method: post
+          path: messages/{id}
+          method: get
           cors: true
+          integration: LAMBDA
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
