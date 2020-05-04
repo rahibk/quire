@@ -76,7 +76,7 @@ export default function Home() {
               color="inherit"
               gutterBottom
             >
-              <span role="img" aria-label="sheep">👋 </span>Welcome Back {user.displayName}!
+              <span role="img" aria-label="sheep">👋 </span>Welcome back, {user.displayName.split(' ')[0]}!
             </Typography>
           </Container>
           <Container className={classes.cardGrid} maxWidth="md">
