@@ -71,8 +71,7 @@ export default function Home() {
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography
-              component="h1"
-              variant="h2"
+              variant="h4"
               align="center"
               color="inherit"
               gutterBottom
