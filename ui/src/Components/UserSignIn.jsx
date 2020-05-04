@@ -46,7 +46,7 @@ const UserSignIn = ({ onClose, selectedValue, open }) => {
       }
     })
     .catch(e => {
-      setError(e.message);
+      setError(true);
     });
 };
 
