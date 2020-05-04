@@ -7,18 +7,22 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Typography from "@material-ui/core/Typography";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import GoogleIcon from "../Images/googleLogo.svg"
 import EmailIcon from "@material-ui/icons/Email";
 import "../Styles/UserSignIn.scss";
-import { authenticate } from "../Clients/AuthClient";
+import * as firebase from "firebase";
+// import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebaseConfig from "../firebase.config";
+
+firebase.initializeApp(firebaseConfig);
 
 const UserSignIn = ({ onClose, selectedValue, open }) => {
   const [page, setPage] = useState(selectedValue);
   const [newUser, setNewUser] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
@@ -26,15 +30,54 @@ const UserSignIn = ({ onClose, selectedValue, open }) => {
     return email.length !== 0 && password.length !== 0;
   };
 
-  const handleAuth = (e) => {
+  const handleSignIn = (e) => {
+    console.log("test")
     e.preventDefault();
-    authenticate(email, password)
-      .then((data) => {
-        localStorage.setItem("AUTH_TOKEN", data.access_token);
+    firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(res => {
+      if (res.user) {
+        var data = Object.assign({}, res.user);
+        data.displayName = name;
+        console.log(data);
+        localStorage.setItem("user", JSON.stringify(data));
+        window.location.reload(true);
+      }
+    })
+    .catch(e => {
+      setError(e.message);
+    });
+};
+
+const handleAuth = (e) => {
+  e.preventDefault();
+  firebase
+  .auth()
+  .signInWithEmailAndPassword(email, password)
+  .then(res => {
+    if (res.user) {
+      localStorage.setItem("user", res.user);
+      window.location.reload(true);
+    }
+  })
+  .catch(e => {
+    setError(e.message);
+  });
+};
+
+const handleGoogleLogin = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log(result.user.displayName)
+        localStorage.setItem("user", JSON.stringify(result.user));
         window.location.reload(true);
       })
-      .catch(() => setError(true));
-  };
+      .catch(e => setError(e.message))
+    }
 
   return (
     <div>
@@ -57,27 +100,54 @@ const UserSignIn = ({ onClose, selectedValue, open }) => {
             >
               <div className="dialog-header">
                 <Typography variant="h6">Create an account</Typography>
-                <form className="login-form" noValidate autoComplete="off">
-                  <TextField fullWidth id="name" label="Full Name" />
-                  <br />
-                  <TextField fullWidth id="email" label="Email" />
+                <form className="login-form" noValidate autoComplete="off" onSubmit={handleSignIn}>
+                  <TextField fullWidth id="name" label="Full Name" onChange={(e) => setName(e.target.value)} />
                   <br />
                   <TextField
-                    fullWidth
-                    id="password"
-                    type="password"
-                    label="Password"
-                  />
+                  fullWidth
+                  onChange={(e) => setEmail(e.target.value)}
+                  id="email"
+                  label="Email"
+                  error={error}
+                  helperText={error}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {error && <Typography color="error">!</Typography>}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
                   <br />
-                </form>
+                  <TextField
+                  fullWidth
+                  onChange={(e) => setPassword(e.target.value)}
+                  id="password"
+                  type="password"
+                  label="Password"
+                  error={error}
+                  helperText={error}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {error && <Typography color="error">!</Typography>}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                  <br />
+               
                 <Button
                   className="login-button"
                   fullWidth="true"
                   variant="contained"
                   color="primary"
+                  type="submit"
+                  disabled={!isSubmitable()}
                 >
                   Continue
                 </Button>
+                </form>
               </div>
             </DialogTitle>
             <DialogContent className="dialog-text">
@@ -124,11 +194,12 @@ const UserSignIn = ({ onClose, selectedValue, open }) => {
                   fullWidth="true"
                   variant="contained"
                   color="primary"
+                  onClick={handleGoogleLogin}
                 >
-                  <LinkedInIcon
-                    style={{ marginRight: "3px", color: "#0072b1" }}
+                  <img src={GoogleIcon}
+                    style={{ marginRight: "5px", width: "20px" }}
                   />
-                  Connect with LinkedIn
+                 Sign up with Google
                 </Button>
                 <br />
                 <Button
@@ -138,7 +209,7 @@ const UserSignIn = ({ onClose, selectedValue, open }) => {
                   color="primary"
                   onClick={() => setNewUser(true)}
                 >
-                  <EmailIcon style={{ marginRight: "3px" }} /> Sign up with
+                  <EmailIcon style={{ marginRight: "5px" }} /> Sign up with
                   email
                 </Button>
               </div>

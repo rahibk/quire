@@ -5,7 +5,7 @@ const AuthGate = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("AUTH_TOKEN");
+    const token = localStorage.getItem("user");
     if (token) {
       setIsAuthenticated(true);
     }

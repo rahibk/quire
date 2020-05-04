@@ -4,9 +4,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import DefaultAvatar from "../Images/avatar.webp"
 import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   cardContent: {
@@ -67,10 +71,30 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  profileIcon: {
+    width: "30px",
+    borderRadius: "50%",
+  },
+  profileMenu: {
+    color: "#FFFFFF",
+  },
 }));
 
 export default function UserNavBar() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const imgUrl =  JSON.parse(localStorage.getItem("user")).photoURL;
+  console.log(imgUrl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className={classes.appbar}>
       <AppBar position="static">
@@ -91,7 +115,22 @@ export default function UserNavBar() {
             />
           </div>
           <Button href="/messages" color="inherit">Messages</Button>
-          <a href="/profile"/ ><AccountCircleIcon /><a/>
+          <Button onClick={handleClick}><img src={imgUrl ? imgUrl : DefaultAvatar} className={classes.profileIcon}/></Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem className={classes.profileMenu} onClick={handleClose}>Profile</MenuItem>
+            <MenuItem className={classes.profileMenu}  
+            onClick={() => {
+              handleClose();
+              localStorage.clear();
+              window.location.reload(true);
+            }}>Logout</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </div>

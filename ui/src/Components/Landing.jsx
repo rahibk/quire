@@ -17,16 +17,8 @@ import Link from "@material-ui/core/Link";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import UserSignIn from "./UserSignIn";
+import Footer from "./Footer";
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="#C4C4C4">
-      {" © "} {new Date().getFullYear()}{" "}
-      <Link color="inherit">Quired.fm, DBA Hole Strategy Inc.</Link>
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -181,7 +173,7 @@ export default function Landing() {
               color="inherit"
               gutterBottom
             >
-              Meet the mentors
+              Meet the mentors.
             </Typography>
           </Container>
           <Container className={classes.cardGrid} maxWidth="md">
@@ -224,17 +216,7 @@ export default function Landing() {
           </Container>
         </div>
       </main>
-      <footer className={classes.footer}>
-        <Typography
-          variant="subtitle1"
-          align="left"
-          component="p"
-          className={classes.title}
-        >
-          quired.fm
-        </Typography>
-        <Copyright />
-      </footer>
+      <Footer/>
     </React.Fragment>
   );
 }

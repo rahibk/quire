@@ -59,6 +59,9 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function Home() {
   const classes = useStyles();
 
+  const user =  JSON.parse(localStorage.getItem("user"));
+  console.log(user.displayName);
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -74,7 +77,7 @@ export default function Home() {
               color="inherit"
               gutterBottom
             >
-              Welcome Back !
+              Welcome Back {user.displayName}!
             </Typography>
           </Container>
           <Container className={classes.cardGrid} maxWidth="md">
