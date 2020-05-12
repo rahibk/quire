@@ -84,7 +84,8 @@ export default function UserNavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const imgUrl =  JSON.parse(localStorage.getItem("user")).photoURL;
+  // const imgUrl =  JSON.parse(localStorage.getItem("user")).photoURL ? ; 
+  const imgUrl = ''
   console.log(imgUrl);
 
   const handleClick = (event) => {

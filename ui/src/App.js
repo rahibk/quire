@@ -45,7 +45,7 @@ function App() {
 return (
 <div className="App">
 <ThemeProvider theme={theme}>
-<AuthGate>
+{/* <AuthGate> */}
 <BrowserRouter>
 <Switch>
 <Route exact path="/">
@@ -63,7 +63,7 @@ return (
 <Redirect to="/"/>
 </Switch>
 </BrowserRouter>
-</AuthGate>
+{/* </AuthGate> */}
 </ThemeProvider>
 </div>
 );
