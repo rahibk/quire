@@ -60,7 +60,6 @@ export default function Home() {
   const classes = useStyles();
 
   const user =  JSON.parse(localStorage.getItem("user"));
-  console.log(user.displayName);
 
   return (
     <React.Fragment>

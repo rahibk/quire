@@ -19,7 +19,7 @@ const ChatBlock = (props) => {
           <h3 className="headig">
             <span className="re">re</span>
             <span className="headTxt">
-              What do you think about my start up idea?
+             {props.title} 
             </span>
           </h3>
         </header>
@@ -51,31 +51,14 @@ const ChatBlock = (props) => {
         <header className="head">
           <h3 className="headig">
             <span className="headTxt">
-              What do you think about my start up idea?
+             {props.title} 
             </span>
           </h3>
           <div className="time">3 days ago</div>
         </header>
         <div className="contentSection">
           <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.”"Lorem ipsum dolor sit
-            amet, consectetur
-          </p>
-          <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magnais nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.”"Lorem ipsum dolor sit amet, co aliqua.Ut enim ad minim
-            veniam, qunsectetur
-          </p>
-          <p>
-            Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.”
+            { props.message} 
           </p>
         </div>
       </div>

@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+*,
+html {
+  box-sizing: border-box;
+}
+.massagesHolder {
+  background: #121521;
+  padding: 130px 0 70px;
+  color: #fff;
+  text-align: left;
+}
+.massagesHolder h2 {
+  font-size: 48px;
+  line-height: 58px;
+  margin: 0 0 50px;
+}
+.massagesHolder .container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.massagesHolder .twoColumns {
+  display: flex;
+}
+.massagesHolder .sidebar {
+  width: 345px;
+  background: #32314e;
+  padding: 10px 8px;
+  margin-right: 20px;
+}
+.massagesHolder .sidebar .imgHolder {
+  width: 150px;
+}
+.massagesHolder .sidebar img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  width: 100%;
+}
+.massagesHolder .sidebar .txt {
+  padding: 15px 0 15px 16px;
+}
+.massagesHolder .sidebar .txt .title {
+  font-size: 16px;
+  line-height: 22px;
+}
+.massagesHolder .sideList {
+  font-size: 12px;
+  line-height: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.massagesHolder .sideList li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+.massagesHolder .sideList li.active {
+  background: #2a2a43;
+  border-radius: 5px;
+}
+.massagesHolder .sideList li p {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.02em;
+}
+.massagesHolder .content {
+  background: #161927;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: calc(100% - 365px);
+}
+.massagesHolder .content .topBar {
+  padding: 50px 46px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.massagesHolder .content .head {
+  background: #1d2236;
+  border: 1px solid rgba(18, 21, 33, 0.25);
+  box-sizing: border-box;
+  padding: 20px 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.massagesHolder .content .head .re {
+  margin-right: 15px;
+  font-size: 16px;
+  line-height: 19px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+  background-color: #b030b0;
+}
+.massagesHolder .content .head h3 {
+  color: #f2f2f2;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+}
+.massagesHolder .content .contentSection {
+  font-family: "Roboto", sans-serif;
+  padding: 30px 46px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.massagesHolder .content .contentSection p {
+  margin: 0 0 25px;
+}
+.massagesHolder .btn {
+  background: #6fcf97;
+  border-radius: 2px;
+  padding: 5px 10px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  font-size: 12px;
+  line-height: 14px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.massagesHolder .btn:hover {
+  opacity: 0.8;
+}
+.massagesHolder .btn.btnBlue {
+  background-color: #12c1fa;
+}
