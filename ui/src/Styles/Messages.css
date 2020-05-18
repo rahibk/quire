@@ -26,18 +26,27 @@ html {
   background: #32314e;
   padding: 10px 8px;
   margin-right: 20px;
+  border: 1px solid rgba(18, 21, 33, 0.25);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }
 .massagesHolder .sidebar .imgHolder {
   width: 150px;
 }
 .massagesHolder .sidebar img {
-  max-width: 100%;
-  height: auto;
+  width: 92px;
+  height: 89px;
+  left: 141px;
+  top: 382px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
   display: block;
-  width: 100%;
 }
 .massagesHolder .sidebar .txt {
   padding: 15px 0 15px 16px;
+  position: absolute;
+  left: 113px;
+  width: 212px;
 }
 .massagesHolder .sidebar .txt .title {
   font-size: 16px;
