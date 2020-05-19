@@ -9,3 +9,6 @@
 .vscode/
 api/.serverless/serverless-state.json
 api/.serverless
+
+#endpoints file
+ui/src/properties/

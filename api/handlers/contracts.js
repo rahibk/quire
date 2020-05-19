@@ -77,7 +77,7 @@ module.exports.getContracts = (event, context, callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
 
     var userID = event.path.id
-    db.query('SELECT * FROM contracts WHERE buyer_id=$1', [userID])
+    db.query('SELECT * FROM contracts WHERE buyer_id=$1 NATURAL JOIN influencers', [userID])
         .then(res => {
             callback(null, {
                 statusCode: 200,

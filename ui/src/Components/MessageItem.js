@@ -4,7 +4,7 @@ const MessageItem = (props) => {
   const [active, setActive] = React.useState(1);
 
   //standardizing the message preview, otherwise the messages can be of variable length and mess up the image sizing
-/*   const messagePreview = (message) => {
+ const messagePreview = (message) => {
     if (message.length < 63){
       var i = message.length;
       while (i < 63){
@@ -16,22 +16,22 @@ const MessageItem = (props) => {
     }else{
       return (message.substring(0,62) + '...')
     }
-  } */
+  }
 
   return (
     <>
       <div className="sidebar">
         <ul className="sideList">
-          {props.messageData &&
-            props.messageData.map((item) => (
-              <li className={active && active === item.message_id ? "active":""} style={{cursor:'pointer'}} onClick={()=>{setActive(item.message_id)}}>
+          {props.contractData &&
+            props.contractData.map((item) => (
+              <li className={active && active === item.contract_id ? "active":""} style={{cursor:'pointer'}} onClick={()=>{setActive(item.contract_id)}}>
                 <div className="imgHolder">
                   <img src="https://source.unsplash.com/random"></img>
                 </div>
                 <div className="txt">
-                  <strong className="title"> {item.sender_id} </strong>
+                  <strong className="title"> {item.influencer_id} </strong>
                   <p>
-                    {item.body}
+                    {item.isFinished}
                   </p>
                 </div>
               </li>
