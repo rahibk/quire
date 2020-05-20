@@ -3,6 +3,7 @@ import React from "react";
 const ChatBlock = (props) => {
   return (
     <>
+      { console.log("props" + JSON.stringify(props.messageData[0]))}
       <div className="topBar">
         <div className="btnsHolder">
           <a href="#" className="btn btnGreen">
@@ -19,7 +20,7 @@ const ChatBlock = (props) => {
           <h3 className="headig">
             <span className="re">re</span>
             <span className="headTxt">
-             {props.title} 
+              { props.messageData ? props.messageData[0].title : ""  }
             </span>
           </h3>
         </header>

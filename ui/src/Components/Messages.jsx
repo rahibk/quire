@@ -17,12 +17,15 @@ const axios = require("axios");
 const useStyles = makeStyles((theme) => ({}));
 
 export default function Messages() {
+  
   const [messageData, setMessageData] = React.useState([]);
 
   const [contractData, setContractData] = React.useState([]);
   const [active, setActive] = React.useState(1);
-  const [focusedCont, setFocusedMessage] = React.useState(0);
+  const [focusedContract, setFocusedContract] = React.useState(0);
   const classes = useStyles();
+
+  
 
   React.useEffect(() => {
     console.log(messagesEndpoint + userID)
@@ -57,10 +60,10 @@ return (
         <div className="container">
           <h2> 🙌Your messages, Serina. </h2>
           <div className="twoColumns">
-            { console.log(contractData)}
-            <MessageItem contractData={contractData} />
+            { console.log(focusedContract)}
+            <MessageItem contractData={contractData} setFocusedContract={setFocusedContract}/>
             <div className="content">
-              <ChatBlock messageData={messageData} />
+              <ChatBlock messageData={messageData} focusedContract={focusedContract} />
             </div>
           </div>
         </div>

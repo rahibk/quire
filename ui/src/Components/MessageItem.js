@@ -24,14 +24,14 @@ const MessageItem = (props) => {
         <ul className="sideList">
           {props.contractData &&
             props.contractData.map((item) => (
-              <li className={active && active === item.contract_id ? "active":""} style={{cursor:'pointer'}} onClick={()=>{setActive(item.contract_id)}}>
+              <li className={active && active === item.contract_id ? "active":""} style={{cursor:'pointer'}} onClick={()=>{setActive(item.contract_id); props.setFocusedContract(item.contract_id)}}>
                 <div className="imgHolder">
                   <img src="https://source.unsplash.com/random"></img>
                 </div>
                 <div className="txt">
-                  <strong className="title"> {item.influencer_id} </strong>
+                  <strong className="title"> {item.first_name + " " + item.last_name} </strong>
                   <p>
-                    {item.isFinished}
+                    {console.log(item.isFinished)}
                   </p>
                 </div>
               </li>
