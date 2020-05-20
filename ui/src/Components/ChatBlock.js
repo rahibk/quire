@@ -3,7 +3,8 @@ import React from "react";
 const ChatBlock = (props) => {
   return (
     <>
-      { console.log("props" + JSON.stringify(props.messageData[0]))}
+    {props.focusedContract && props.messageData ? (
+      <div>
       <div className="topBar">
         <div className="btnsHolder">
           <a href="#" className="btn btnGreen">
@@ -63,6 +64,7 @@ const ChatBlock = (props) => {
           </p>
         </div>
       </div>
+    </div> ) : (<p>No message</p>) }
     </>
   );
 };
