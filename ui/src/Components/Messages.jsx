@@ -11,45 +11,34 @@ import ChatBlock from "./ChatBlock";
 let messagesEndpoint = "https://k9g7kqmqtj.execute-api.us-east-1.amazonaws.com/dev/messages/";
 let contractsEndpoint="https://k9g7kqmqtj.execute-api.us-east-1.amazonaws.com/dev/contracts/user/"
 let userID = "33";
-
 const axios = require("axios");
-
-const useStyles = makeStyles((theme) => ({}));
 
 export default function Messages() {
   
   const [messageData, setMessageData] = React.useState([]);
-
   const [contractData, setContractData] = React.useState([]);
-  const [active, setActive] = React.useState(1);
   const [focusedContract, setFocusedContract] = React.useState(0);
-  const classes = useStyles();
-
+  const [message, setMessage] = React.useState({});
+  const [message2, setMessage2] = React.useState({});
   
-
   React.useEffect(() => {
-    console.log(messagesEndpoint + userID)
     axios.get("https://k9g7kqmqtj.execute-api.us-east-1.amazonaws.com/dev/contracts/user/32")
     .then((res) =>{
-      console.log(res)
       setContractData(JSON.parse(res.data.body));
-      console.log("contractData" + contractData)
     })
     .catch((error => {
-      console.log(error);
     })) 
     axios.get("https://k9g7kqmqtj.execute-api.us-east-1.amazonaws.com/dev/messages/32")
     .then((res) => {
-        //console.log(res) 
+      console.log(res)
       setMessageData(JSON.parse(res.data.body));
-      console.log("messageData" + messageData[0]);
+      console.log("messageData" + messageData)
     })
     .catch((error) => {
       console.log(error);
     })
   }, []);
     
-
 
 return (
   <React.Fragment>
@@ -60,10 +49,9 @@ return (
         <div className="container">
           <h2> 🙌Your messages, Serina. </h2>
           <div className="twoColumns">
-            { console.log(focusedContract)}
-            <MessageItem contractData={contractData} setFocusedContract={setFocusedContract}/>
+            <MessageItem contractData={contractData} messageData={messageData} setFocusedContract={setFocusedContract} setMessage={setMessage} setMessage2={setMessage2}/>
             <div className="content">
-              <ChatBlock messageData={messageData} focusedContract={focusedContract} />
+              <ChatBlock messageData={messageData} focusedContract={focusedContract} message={message} message2={message2}/>
             </div>
           </div>
         </div>
